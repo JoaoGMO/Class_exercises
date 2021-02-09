@@ -3,7 +3,7 @@
 #     Build a portfolio with three banks given the monetary positions
 #     (plus some extra analysis)
 #
-#     Bradesco, Banco do Brasil, Itaú Unibanco
+#     Banks: Bradesco, Banco do Brasil, Itaú Unibanco
 # 
 
 library(quantmod)
@@ -20,7 +20,7 @@ getSymbols(banks_tickers, auto.assign = TRUE, from = "2017-07-31",
 
 
 
-#Taking a glance on the data before start the exercise
+#Taking a glance on the data before starting the exercise
 
 colnames(BBAS3.SA)
 colnames(BBDC3.SA)
@@ -33,8 +33,8 @@ colnames(BBDC3.SA) <- new_names
 colnames(ITUB3.SA) <- new_names
 
 #   I want only the adjusted price, since banks in Brazil are dividend 
-# companies, it may have a significant distortion in closing price compared
-# with it's real value. This plot will help to visualize the difference.
+# companies it may have a significant distortion in closing price compared
+# to it's real value. This plot will help to visualize the difference.
 
 ggplot(BBAS3.SA, aes(x = index(BBAS3.SA)))+
   geom_line(aes(y = BBAS3.SA$Close), color = "black")+
@@ -43,9 +43,9 @@ ggplot(BBAS3.SA, aes(x = index(BBAS3.SA)))+
        y = "Price (R$)") + theme_light()
 
 #   Now it's time to create a xts object only with adjusted prices.
-# This task would require to move the stocks to a list and loop over it to
+# This task would require to move the stocks into a list and loop over it to
 # gather only the "Adjusted" columns. Since I'm dealing only with 3 companies
-# (thanks, prof), the job will be much easier.
+# (thanks prof), the job will be much easier.
 
 (banks_price <- xts(order.by = index(BBAS3.SA)))
 
@@ -68,7 +68,7 @@ ggplot(banks_price, aes(x = index(banks_price)))+
 
 #   After have seen some statistics, ensure that there are no NA's in the
 # sample and plotting the price evolution, the next step is to calculate the
-# returns in order to continue the portfolio analysis. It will be calculated 
+# returns in order to continue the portfolio analysis. It will be calculated in 
 # ways: with and without Return.calculate() function.
 
 # 1) Without Return.calculate():
@@ -86,8 +86,8 @@ return_no_func <- as.xts(return_no_func, order.by = index(BBAS3.SA))
 head(return_no_func)
 
 #   This leads us with the full table of log-returns. It took me 9 lines 
-# of code, certainly there may be others optimal ways to perform it like
-# what I'm proposing. 
+# of code (certainly there may be others optimal ways to perform 
+# what I'm proposing). 
 
 # 2) With Return.calculate() from Portfolio.Analytics
 
@@ -98,7 +98,7 @@ head(pt_returns)
 #   Now it took only 2 lines, 1 to create a variable and calculate the
 # returns and other to verify the results. The difference on the results
 # is due to the method argument in the function that calculates the returns
-# in a descrete way (R = Pt/Pt-1 - 1). Eitherway, it was a minimum and
+# in a descrete way (R = Pt/Pt-1 - 1). Either way, it was a minimum and
 # tolerable difference.
 
 #   Moving forward with the analysis, it's time to look at characteristics
@@ -137,6 +137,7 @@ lines(density(pt_returns$Itau, na.rm = TRUE), col = "red", lwd = 2)
 
 #   After Observing the plots of density it's quite conclusive that it may
 # be difficult to approximate the curves to a Normal (or any other) dist.
+
 #   Next step is to calculate the allocations with other information given in
 # class. Also, it'd be nice to check the diversification level (which is low,
 # since all assets are pretty much similar).
