@@ -3,7 +3,7 @@
 #     Build a portfolio with three banks given the monetary positions
 #     (plus some extra analysis)
 #
-#     Bradesco, Banco do Brasil, Itaú Unibanco
+#     Bradesco, Banco do Brasil, ItaÃº Unibanco
 # 
 
 library(quantmod)
@@ -131,7 +131,7 @@ hist(pt_returns$Bradesco, prob = TRUE, xlab = "", main = "Bradesco",
      breaks = 10, col = "lightblue")
 lines(density(pt_returns$Bradesco, na.rm = TRUE), col = "red", lwd = 2)
 
-hist(pt_returns$Itau, prob = TRUE, xlab = "", main = "Itaú", 
+hist(pt_returns$Itau, prob = TRUE, xlab = "", main = "ItaÃº", 
      breaks = 10, col = "lightblue")
 lines(density(pt_returns$Itau, na.rm = TRUE), col = "red", lwd = 2)
 
@@ -144,7 +144,7 @@ lines(density(pt_returns$Itau, na.rm = TRUE), col = "red", lwd = 2)
 
 positions <- c("Banco do Brasil" = 4197500, 
                "Bradesco" = 4605000,
-               "Itaú" = 5245500)
+               "ItaÃº" = 5245500)
 
 
 par(mfrow = c(1,2))
