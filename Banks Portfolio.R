@@ -85,6 +85,18 @@ head(return_no_func)
 return_no_func <- as.xts(return_no_func, order.by = index(BBAS3.SA))
 head(return_no_func)
 
+# ------------------------- EDITING -------------------------
+#          Indeed, there is a much easier way to do this without
+# Return.calculate(), also using the log-return. This will take the
+# same 2 lines I needed to calculate with the formula.
+
+no_fun_prices_edit <- banks_price
+return_no_func_edit <- diff(log(no_fun_prices_edit)) 
+
+# -------------------------------------------------------------
+
+
+
 #   This leads us with the full table of log-returns. It took me 9 lines 
 # of code (certainly there may be others optimal ways to perform 
 # what I'm proposing). 
