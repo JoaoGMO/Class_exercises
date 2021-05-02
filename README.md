@@ -1,3 +1,3 @@
 # Class exercise 
 
-- The purpose of this directory is to reproduce some exercises given in class.
+- The purpose of this repository is to reproduce some exercises given in class.
